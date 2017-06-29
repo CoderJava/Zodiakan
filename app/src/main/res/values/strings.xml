@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Zodiakan</string>
+    <string name="image_view_icon_full_name_user">image view icon name user</string>
+    <string name="image_view_birthday_user">image view birthday user</string>
+    <string name="birthday">Birthday</string>
+    <string name="full_name">Full name</string>
+    <string name="cek_zodiak">Cek Zodiak</string>
+</resources>
