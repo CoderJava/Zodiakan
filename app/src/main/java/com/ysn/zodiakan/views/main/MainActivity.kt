@@ -2,11 +2,15 @@ package com.ysn.zodiakan.views.main
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.support.design.widget.CoordinatorLayout
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.DatePicker
 import android.widget.Toast
 import com.ysn.zodiakan.R
+import com.ysn.zodiakan.internal.model.zodiak.Zodiak
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -63,6 +67,7 @@ class MainActivity : AppCompatActivity(), MainActivityView, View.OnClickListener
                 val fullname = edit_text_full_name_activity_main.text.toString().trim()
                 val birthday = edit_text_birthday_user_activity_main.text.toString()
                         .trim().replace(" ", "-", false)
+                showProgress()
                 mainActivityPresenter?.onCheckZodiak(fullname, birthday)
             }
             R.id.edit_text_birthday_user_activity_main -> {
@@ -111,5 +116,32 @@ class MainActivity : AppCompatActivity(), MainActivityView, View.OnClickListener
         this.month = month.plus(1)
         this.dayOfMonth = dayOfMonth
         edit_text_birthday_user_activity_main.setText("$dayOfMonth $strMonth $year")
+    }
+
+    override fun checkZodiak(zodiak: Zodiak) {
+        hideProgress()
+        Log.d(TAG, "zodiak: $zodiak")
+    }
+
+    override fun checkZodiakFailed() {
+        hideProgress()
+        Snackbar.make(
+                findViewById(R.id.coordinator_layout_container_activity_main) as CoordinatorLayout,
+                "Your connection is problem. Please try again", Snackbar.LENGTH_LONG)
+                .show()
+    }
+
+    private fun showProgress() {
+        button_cek_zodiak_activity_main.visibility = View.GONE
+        progress_bar_activity_main.visibility = View.VISIBLE
+        edit_text_full_name_activity_main.isEnabled = false
+        edit_text_birthday_user_activity_main.isEnabled = false
+    }
+
+    private fun hideProgress() {
+        button_cek_zodiak_activity_main.visibility = View.VISIBLE
+        progress_bar_activity_main.visibility = View.GONE
+        edit_text_full_name_activity_main.isEnabled = true
+        edit_text_birthday_user_activity_main.isEnabled = true
     }
 }
