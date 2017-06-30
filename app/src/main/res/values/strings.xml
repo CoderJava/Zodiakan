@@ -5,4 +5,8 @@
     <string name="birthday">Birthday</string>
     <string name="full_name">Full name</string>
     <string name="cek_zodiak">Cek Zodiak</string>
+    <string name="image_view_icon_circle_zodiak_activity_result_zodiak">image view icon circle zodiak activity result zodiak</string>
+    <string name="unknown">Unknown</string>
+    <string name="age">Age</string>
+    <string name="birthday_remnant">Birthday Remnant</string>
 </resources>

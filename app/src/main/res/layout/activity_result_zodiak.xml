@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/coordinator_layout_container_activity_result_zodiak"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    tools:context="com.ysn.zodiakan.views.submenu.ResultZodiakActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relative_layout_content_activity_result_zodiak"
+        >
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:id="@+id/image_view_icon_circle_zodiak_activity_result_zodiak"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_aquarius"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/image_view_icon_circle_zodiak_activity_result_zodiak"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_view_zodiak_name_activity_result_zodiak"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/image_view_icon_circle_zodiak_activity_result_zodiak"
+            android:text="@string/unknown"
+            android:textSize="18sp"
+            android:textStyle="bold|"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_view_zodiak_name_activity_result_zodiak"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/full_name"
+                android:textColor="@android:color/darker_gray"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_full_name_user_activity_result_zodiak"
+                android:text="@string/unknown"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/birthday"
+                android:textColor="@android:color/darker_gray"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_birthday_user_activity_result_zodiak"
+                android:text="@string/unknown"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/age"
+                android:textColor="@android:color/darker_gray"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_age_user_activity_result_zodiak"
+                android:text="@string/unknown"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/birthday_remnant"
+                android:textColor="@android:color/darker_gray"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_birthday_remnant_activity_result_zodiak"
+                android:text="@string/unknown"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

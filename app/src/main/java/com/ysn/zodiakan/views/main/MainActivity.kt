@@ -1,6 +1,7 @@
 package com.ysn.zodiakan.views.main
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.Snackbar
@@ -8,9 +9,9 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.DatePicker
-import android.widget.Toast
 import com.ysn.zodiakan.R
 import com.ysn.zodiakan.internal.model.zodiak.Zodiak
+import com.ysn.zodiakan.views.submenu.ResultZodiakActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -65,8 +66,8 @@ class MainActivity : AppCompatActivity(), MainActivityView, View.OnClickListener
             R.id.button_cek_zodiak_activity_main -> {
                 // todo: button cek zodiak clicked
                 val fullname = edit_text_full_name_activity_main.text.toString().trim()
-                val birthday = edit_text_birthday_user_activity_main.text.toString()
-                        .trim().replace(" ", "-", false)
+                val birthday = "$dayOfMonth-$month-$year"
+                Log.d(TAG, "birthday: $birthday")
                 showProgress()
                 mainActivityPresenter?.onCheckZodiak(fullname, birthday)
             }
@@ -120,7 +121,10 @@ class MainActivity : AppCompatActivity(), MainActivityView, View.OnClickListener
 
     override fun checkZodiak(zodiak: Zodiak) {
         hideProgress()
-        Log.d(TAG, "zodiak: $zodiak")
+        Log.d(TAG, "zodiak: " + zodiak)
+        val intentResultZodiakActivity = Intent(this, ResultZodiakActivity::class.java)
+        intentResultZodiakActivity.putExtra("zodiak", zodiak)
+        startActivity(intentResultZodiakActivity)
     }
 
     override fun checkZodiakFailed() {
