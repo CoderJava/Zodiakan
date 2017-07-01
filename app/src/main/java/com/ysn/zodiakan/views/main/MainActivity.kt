@@ -87,31 +87,20 @@ class MainActivity : AppCompatActivity(), MainActivityView, View.OnClickListener
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         // 29-5-2017 -> 29 Juni 2017
-        var strMonth = ""
-        if (month == 0) {
-            strMonth = "Jan"
-        } else if (month == 1) {
-            strMonth = "Feb"
-        } else if (month == 2) {
-            strMonth = "Mar"
-        } else if (month == 3) {
-            strMonth = "Apr"
-        } else if (month == 4) {
-            strMonth = "May"
-        } else if (month == 5) {
-            strMonth = "Jun"
-        } else if (month == 6) {
-            strMonth = "Jul"
-        } else if (month == 7) {
-            strMonth = "Aug"
-        } else if (month == 8) {
-            strMonth = "Sep"
-        } else if (month == 9) {
-            strMonth = "Oct"
-        } else if (month == 10) {
-            strMonth = "Nov"
-        } else if (month == 11) {
-            strMonth = "Dec"
+        val strMonth = when (month) {
+            0 -> "Jan"
+            1 -> "Feb"
+            2 -> "Mar"
+            3 -> "Apr"
+            4 -> "May"
+            5 -> "Jun"
+            6 -> "Jul"
+            7 -> "Aug"
+            8 -> "Sep"
+            9 -> "Oct"
+            10 -> "Nov"
+            11 -> "Dec"
+            else -> ""
         }
         this.year = year
         this.month = month.plus(1)
