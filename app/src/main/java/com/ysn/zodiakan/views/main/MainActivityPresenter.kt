@@ -1,12 +1,11 @@
 package com.ysn.zodiakan.views.main
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.ysn.zodiakan.api.ApiService
-import com.ysn.zodiakan.internal.model.zodiak.Zodiak
 import com.ysn.zodiakan.views.base.Presenter
 import com.ysn.zodiakan.views.base.View
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
@@ -40,7 +39,9 @@ class MainActivityPresenter : Presenter<MainActivityView> {
     fun onCheckZodiak(fullname: String, birthday: String) {
         initRetrofit()
         val resultCallGetZodiak = retrofit.create(ApiService::class.java)
-        resultCallGetZodiak.getZodiak(key, fullname, birthday)
+
+        // Without Rx
+        /*resultCallGetZodiak.getZodiak(key, fullname, birthday)
                 .enqueue(object : Callback<Zodiak> {
                     override fun onResponse(call: Call<Zodiak>?, response: Response<Zodiak>?) {
                         val zodiak = response?.body()
@@ -55,12 +56,32 @@ class MainActivityPresenter : Presenter<MainActivityView> {
                         t?.printStackTrace()
                         mainActivityView?.checkZodiakFailed()
                     }
-                })
+                })*/
+
+        // With Rx
+        resultCallGetZodiak.getZodiak(key, fullname, birthday)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            zodiak ->
+                            if (zodiak.status.toLowerCase() == "success")
+                                mainActivityView?.checkZodiak(zodiak)
+                            else
+                                mainActivityView?.checkZodiakFailed()
+                        },
+                        {
+                            throwable ->
+                            throwable.printStackTrace()
+                            mainActivityView?.checkZodiakFailed()
+                        }
+                )
     }
 
     private fun initRetrofit() {
         retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }

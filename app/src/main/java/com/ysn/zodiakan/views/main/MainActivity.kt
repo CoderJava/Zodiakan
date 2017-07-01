@@ -12,8 +12,10 @@ import android.widget.DatePicker
 import com.ysn.zodiakan.R
 import com.ysn.zodiakan.internal.model.zodiak.Zodiak
 import com.ysn.zodiakan.views.submenu.ResultZodiakActivity
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+
 
 class MainActivity : AppCompatActivity(), MainActivityView, View.OnClickListener,
         DatePickerDialog.OnDateSetListener {
@@ -64,10 +66,8 @@ class MainActivity : AppCompatActivity(), MainActivityView, View.OnClickListener
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.button_cek_zodiak_activity_main -> {
-                // todo: button cek zodiak clicked
                 val fullname = edit_text_full_name_activity_main.text.toString().trim()
                 val birthday = "$dayOfMonth-$month-$year"
-                Log.d(TAG, "birthday: $birthday")
                 showProgress()
                 mainActivityPresenter?.onCheckZodiak(fullname, birthday)
             }

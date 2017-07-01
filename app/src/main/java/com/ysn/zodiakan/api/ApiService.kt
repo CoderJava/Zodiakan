@@ -1,6 +1,7 @@
 package com.ysn.zodiakan.api
 
 import com.ysn.zodiakan.internal.model.zodiak.Zodiak
+import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -15,6 +16,5 @@ interface ApiService {
             @Query("service") service: String,
             @Query("nama") nama: String,
             @Query("tanggal") tanggal: String
-    ): Call<Zodiak>
-
+    ): Observable<Zodiak>   // Call<Zodiak> if without Rx
 }
